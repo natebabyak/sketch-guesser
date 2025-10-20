@@ -1,6 +1,6 @@
 # sketch-guesser
 
-[Try it out here](https://github.com/natebabyak/sketch-guesser)
+[Try it out here!](https://sketch-guesser.vercel.app)
 
 ![Screenshot](./public/screenshot.png)
 
