@@ -212,7 +212,8 @@ export default function Home() {
       canvas.removeEventListener("mouseleave", handleMouseleave);
       canvas.removeEventListener("mouseup", handleMouseup);
     };
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (guess && guess === answer) {
@@ -254,7 +255,7 @@ export default function Home() {
       </header>
       <main className="flex flex-col gap-4 px-4 pb-4">
         <p className="text-center text-2xl font-light">
-          Draw &ldquot;{answer}&rdquot; {guessedCorrectly ? "✅" : ""}
+          Draw &quot;{answer}&quot; {guessedCorrectly ? "✅" : ""}
         </p>
         <canvas
           ref={canvasRef}
