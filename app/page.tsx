@@ -33,6 +33,7 @@ export default function Home() {
   }, [sketchBoundingBox]);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const classifierRef = useRef<any>(null);
   const isDrawingRef = useRef(false);
   const lastGuessTimeRef = useRef(0);
@@ -57,9 +58,13 @@ export default function Home() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let [left, top, right, bottom] = currentBoundingBox;
-    let width = right - left;
-    let height = bottom - top;
+    const [origLeft, origTop, right, bottom] = currentBoundingBox;
+
+    let left = origLeft;
+    let top = origTop;
+
+    const width = right - left;
+    const height = bottom - top;
     let sketchSize = 2 * SKETCH_PADDING;
 
     if (width >= height) {
@@ -207,7 +212,7 @@ export default function Home() {
       canvas.removeEventListener("mouseleave", handleMouseleave);
       canvas.removeEventListener("mouseup", handleMouseup);
     };
-  }, []);
+  });
 
   useEffect(() => {
     if (guess && guess === answer) {
@@ -249,7 +254,7 @@ export default function Home() {
       </header>
       <main className="flex flex-col gap-4 px-4 pb-4">
         <p className="text-center text-2xl font-light">
-          Draw "{answer}" {guessedCorrectly ? "✅" : ""}
+          Draw &ldquot;{answer}&rdquot; {guessedCorrectly ? "✅" : ""}
         </p>
         <canvas
           ref={canvasRef}
